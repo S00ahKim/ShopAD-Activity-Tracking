@@ -16,10 +16,11 @@ const UserLog: React.FC = () => {
         const tgt = event.target as HTMLElement;
         console.log('사용자 클릭', event.clientX, event.clientY, event.type, event.target, date)
         const logData = {
+            eventType:event.type,
             cltX:event.clientX,
             cltY:event.clientY,
-            eventType:event.type,
             eventTarget:tgt.outerHTML,
+            wheelPosition:0,
             eventDate:date
         };
         axios.post(url, logData)
@@ -29,12 +30,35 @@ const UserLog: React.FC = () => {
 
     function handleContext(event: React.MouseEvent) {
         let date: Date = new Date();  
+        const tgt = event.target as HTMLElement;
         console.log('사용자 우클릭', event.clientX, event.clientY, event.type, event.target, date)
+        const logData = {
+            eventType:event.type,
+            cltX:event.clientX,
+            cltY:event.clientY,
+            eventTarget:tgt.outerHTML,
+            wheelPosition:0,
+            eventDate:date
+        };
+        axios.post(url, logData)
+            .then(res => console.log('Data send'))
+            .catch(err => console.log(err))
     }
 
     function handleWheel(event: React.WheelEvent) {
         let date: Date = new Date();  
         console.log('휠 내리기', event.type, event.deltaY, date)
+        const logData = {
+            eventType:event.type,
+            cltX:'',
+            cltY:'',
+            eventTarget:'',
+            wheelPosition:event.deltaY,
+            eventDate:date
+        };
+        axios.post(url, logData)
+            .then(res => console.log('Data send'))
+            .catch(err => console.log(err))
     }
 
     return (
