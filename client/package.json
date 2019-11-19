@@ -1,0 +1,53 @@
+{
+  "name": "shopad-activity-tracking",
+  "version": "0.1.0",
+  "private": true,
+  "proxy":"http://localhost:5000",
+  "dependencies": {
+    "@egjs/react-infinitegrid": "1.6.2",
+    "@types/jest": "24.0.21",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.3",
+    "axios": "^0.19.0",
+    "http-proxy-middleware": "^0.20.0",
+    "mobx": "4.14.0",
+    "mobx-react": "6.0.3",
+    "mobx-utils": "5.5.2",
+    "mysql": "^2.17.1",
+    "query-string": "4.1.0",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-scripts": "3.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^12.12.5",
+    "@types/query-string": "^6.3.0",
+    "express": "^4.17.1",
+    "mocker-api": "^1.9.0",
+    "nodemon": "^1.19.4",
+    "ts-node": "^8.5.2",
+    "typescript": "^3.6.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "naver hackday",
+  "author": "sooah kim"
+}
