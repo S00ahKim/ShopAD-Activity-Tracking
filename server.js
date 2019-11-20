@@ -20,7 +20,12 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.post('/log_send', (req,res) => {
-    console.log(req['body'])
+    var sql = 'insert into log (eventType, cltX, cltY, eventTarget, wheelPosition, eventDate) values (?, ?, ?, ?, ?, ?);'
+    connection.query(
+        sql, [req['body']['eventType'], req['body']['cltX'],req['body']['cltY'],req['body']['eventTarget'],req['body']['wheelPosition'],req['body']['eventDate']], function(err, result){
+            console.log('ERROR: ', err)
+        }
+    )
 })
 
 app.get('/', (req, res) => {
