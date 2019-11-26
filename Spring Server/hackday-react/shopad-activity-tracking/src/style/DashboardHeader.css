@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+
+.dashboard{
+    background : black;
+    margin-bottom : 10vh;
+}
+
+.dashboard_list{
+    display: block;
+}

@@ -1,0 +1,36 @@
+﻿### 로그
+
+- 로그를 실제로 찍어보니 제대로 찍히지 않음
+- CATEGORY – APPEND – CLICK 으로 나올 수 있게 수정
+- 그래프를 그리기 위해 데이터를 하드코딩함
+- GET 해오는 것이 아니라 간단하더라도 그래프 그림을 그려보는 것을 목표로 하여 바로 배열로 만듦
+- 결과 사진은 sua_result 
+
+
+### 사용한 로그 원본
+
+[{"userId":"0","activityLogs":[{"id":"6","action":"CATEGORY","value":"01","timestamp":"2019-11-22T04:38:44.164+0000","token":"null"},{"id":"6","action":"APPEND","value":"0","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"}]},
+
+{"userId":"0","activityLogs":[{"id":"6","action":"APPEND","value":"3","timestamp":"2019-11-22T04:38:41.271+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"6","action":"APPEND","value":"2","timestamp":"2019-11-22T04:38:06.486+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"6","action":"APPEND","value":"1","timestamp":"2019-11-22T04:38:04.305+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"6","action":"APPEND","value":"0","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"}]},
+
+{"userId":"0","activityLogs":[{"id":"5","action":"APPEND","value":"1","timestamp":"2019-11-22T04:35:45.352+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjUsImV4cCI6MTU3NzA3NTc0NH0.SH8iytUVXmiZElMORfmkbzaXkwJqavfSM_qOVafiGVA"},{"id":"5","action":"APPEND","value":"0","timestamp":"2019-11-22T04:35:43.818+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjUsImV4cCI6MTU3NzA3NTc0NH0.SH8iytUVXmiZElMORfmkbzaXkwJqavfSM_qOVafiGVA"}]},
+
+{"userId":"0","activityLogs":[{"id":"4","action":"CLICK","value":"02","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"4","action":"CATEGORY","value":"02","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"6","action":"APPEND","value":"0","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"}]},
+
+{"userId":"0","activityLogs":[{"id":"4","action":"APPEND","value":"2","timestamp":"2019-11-22T04:32:54.309+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjQsImV4cCI6MTU3NzA3NTU1MX0.cpHDZH9sepZexhKdcKrcgLY5rfdO8rSZTjF_M4eruFk"},{"id":"4","action":"CLICK","value":"02","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"4","action":"APPEND","value":"1","timestamp":"2019-11-22T04:32:32.509+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjQsImV4cCI6MTU3NzA3NTU1MX0.cpHDZH9sepZexhKdcKrcgLY5rfdO8rSZTjF_M4eruFk"},{"id":"4","action":"APPEND","value":"0","timestamp":"2019-11-22T04:32:29.510+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjQsImV4cCI6MTU3NzA3NTU1MX0.cpHDZH9sepZexhKdcKrcgLY5rfdO8rSZTjF_M4eruFk"}]},
+
+{"userId":"0","activityLogs":[{"id":"3","action":"CLICK","value":"02","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:30:05.586+0000","token":"null"}]},
+
+{"userId":"0","activityLogs":[{"id":"6","action":"APPEND","value":"1","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:30:02.978+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"}]},
+
+{"userId":"0","activityLogs":[{"id":"3","action":"CLICK","value":"02","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:29:39.007+0000","token":"null"}]},
+
+{"userId":"0","activityLogs":[{"id":"3","action":"CLICK","value":"3","timestamp":"2019-11-22T04:29:36.895+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"},{"id":"3","action":"APPEND","value":"2","timestamp":"2019-11-22T04:29:36.895+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"},{"id":"3","action":"APPEND","value":"1","timestamp":"2019-11-22T04:29:21.946+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:29:20.034+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"}]},
+
+{"userId":"0","activityLogs":[{"id":"2","action":"APPEND","value":"1","timestamp":"2019-11-22T04:23:14.702+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjIsImV4cCI6MTU3NzA3NDk5M30.IHhe24ywJFP3tS-G1IVIpHaTQY_bLa3jm1phO14qglw"},{"id":"2","action":"APPEND","value":"0","timestamp":"2019-11-22T04:23:12.505+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjIsImV4cCI6MTU3NzA3NDk5M30.IHhe24ywJFP3tS-G1IVIpHaTQY_bLa3jm1phO14qglw"}]},
+
+{"userId":"0","activityLogs":[{"id":"1","action":"APPEND","value":"0","timestamp":"2019-11-22T04:21:55.597+0000","token":"null"}]},
+
+{"userId":"0","activityLogs":[{"id":"1","action":"APPEND","value":"1","timestamp":"2019-11-22T04:21:46.579+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjEsImV4cCI6MTU3NzA3NDg4NX0.4nleQcEuDLiF2s5NnCuNMpgh4Nmp-gbwrkOxNXmL3wY"},{"id":"1","action":"APPEND","value":"0","timestamp":"2019-11-22T04:21:24.813+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjEsImV4cCI6MTU3NzA3NDg4NX0.4nleQcEuDLiF2s5NnCuNMpgh4Nmp-gbwrkOxNXmL3wY"}]},
+
+{"userId":"0","activityLogs":[{"id":"0","action":"APPEND","value":"1","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"0","action":"APPEND","value":"0","timestamp":"2019-11-22T04:19:18.407+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjAsImV4cCI6MTU3NzA3NDc1OX0.SHhacy2ivX-BEgjelGLHwBnZ9D5nfJMSY0TgGBg2Vl0"}]}]

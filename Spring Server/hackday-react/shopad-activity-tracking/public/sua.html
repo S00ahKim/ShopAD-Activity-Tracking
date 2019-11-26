@@ -1,0 +1,251 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    //  제대로 로그가 찍히지 않아서 GET으로 받아오는 부분은 주석 처리 & 이전에 찍은 데이터 일부 수정 후 하드코딩
+    //  function parseURL(url) {
+    //     axios({
+    //         url: url,
+    //         method: 'get'
+    //     }).then(res => set_data(res));
+    //   }
+
+      var sample = [{"userId":"0","activityLogs":[{"id":"6","action":"CATEGORY","value":"1","timestamp":"2019-11-22T04:38:44.164+0000","token":"null"},{"id":"6","action":"APPEND","value":"0","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"}]},
+                    {"userId":"0","activityLogs":[{"id":"6","action":"APPEND","value":"3","timestamp":"2019-11-22T04:38:41.271+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"6","action":"APPEND","value":"2","timestamp":"2019-11-22T04:38:06.486+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"6","action":"APPEND","value":"1","timestamp":"2019-11-22T04:38:04.305+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"6","action":"APPEND","value":"0","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"}]},
+                    {"userId":"0","activityLogs":[{"id":"5","action":"APPEND","value":"1","timestamp":"2019-11-22T04:35:45.352+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjUsImV4cCI6MTU3NzA3NTc0NH0.SH8iytUVXmiZElMORfmkbzaXkwJqavfSM_qOVafiGVA"},{"id":"5","action":"APPEND","value":"0","timestamp":"2019-11-22T04:35:43.818+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjUsImV4cCI6MTU3NzA3NTc0NH0.SH8iytUVXmiZElMORfmkbzaXkwJqavfSM_qOVafiGVA"}]},
+                    {"userId":"0","activityLogs":[{"id":"4","action":"CLICK","value":"2","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"4","action":"CATEGORY","value":"2","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"6","action":"APPEND","value":"0","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"}]},
+                    {"userId":"0","activityLogs":[{"id":"4","action":"APPEND","value":"2","timestamp":"2019-11-22T04:32:54.309+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjQsImV4cCI6MTU3NzA3NTU1MX0.cpHDZH9sepZexhKdcKrcgLY5rfdO8rSZTjF_M4eruFk"},{"id":"4","action":"CLICK","value":"02","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"4","action":"APPEND","value":"1","timestamp":"2019-11-22T04:32:32.509+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjQsImV4cCI6MTU3NzA3NTU1MX0.cpHDZH9sepZexhKdcKrcgLY5rfdO8rSZTjF_M4eruFk"},{"id":"4","action":"APPEND","value":"0","timestamp":"2019-11-22T04:32:29.510+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjQsImV4cCI6MTU3NzA3NTU1MX0.cpHDZH9sepZexhKdcKrcgLY5rfdO8rSZTjF_M4eruFk"}]},
+                    {"userId":"0","activityLogs":[{"id":"3","action":"CLICK","value":"2","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:30:05.586+0000","token":"null"}]},
+                    {"userId":"0","activityLogs":[{"id":"6","action":"APPEND","value":"1","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:30:02.978+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"}]},
+                    {"userId":"0","activityLogs":[{"id":"3","action":"CLICK","value":"2","timestamp":"2019-11-22T04:32:56.801+0000","token":"null"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:29:39.007+0000","token":"null"}]},
+                    {"userId":"0","activityLogs":[{"id":"3","action":"CLICK","value":"3","timestamp":"2019-11-22T04:29:36.895+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"},{"id":"3","action":"APPEND","value":"2","timestamp":"2019-11-22T04:29:36.895+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"},{"id":"3","action":"APPEND","value":"1","timestamp":"2019-11-22T04:29:21.946+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"},{"id":"3","action":"APPEND","value":"0","timestamp":"2019-11-22T04:29:20.034+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjMsImV4cCI6MTU3NzA3NTM2MH0.amYM03HZJfFho7xaWFwfk5iy2hhv5pODBMECqwFFYGg"}]},
+                    {"userId":"0","activityLogs":[{"id":"2","action":"APPEND","value":"1","timestamp":"2019-11-22T04:23:14.702+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjIsImV4cCI6MTU3NzA3NDk5M30.IHhe24ywJFP3tS-G1IVIpHaTQY_bLa3jm1phO14qglw"},{"id":"2","action":"APPEND","value":"0","timestamp":"2019-11-22T04:23:12.505+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjIsImV4cCI6MTU3NzA3NDk5M30.IHhe24ywJFP3tS-G1IVIpHaTQY_bLa3jm1phO14qglw"}]},
+                    {"userId":"0","activityLogs":[{"id":"1","action":"APPEND","value":"0","timestamp":"2019-11-22T04:21:55.597+0000","token":"null"}]},
+                    {"userId":"0","activityLogs":[{"id":"1","action":"APPEND","value":"1","timestamp":"2019-11-22T04:21:46.579+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjEsImV4cCI6MTU3NzA3NDg4NX0.4nleQcEuDLiF2s5NnCuNMpgh4Nmp-gbwrkOxNXmL3wY"},{"id":"1","action":"APPEND","value":"0","timestamp":"2019-11-22T04:21:24.813+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjEsImV4cCI6MTU3NzA3NDg4NX0.4nleQcEuDLiF2s5NnCuNMpgh4Nmp-gbwrkOxNXmL3wY"}]},
+                    {"userId":"0","activityLogs":[{"id":"0","action":"APPEND","value":"1","timestamp":"2019-11-22T04:38:02.245+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjYsImV4cCI6MTU3NzA3NTg4Mn0.Ty6d_PCRTZNEzMB4fnXGKfy6O06CBehS9j5n6a-SqiU"},{"id":"0","action":"APPEND","value":"0","timestamp":"2019-11-22T04:19:18.407+0000","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJoYWNrZGF5IiwidXNlcl9pZHgiOjAsImV4cCI6MTU3NzA3NDc1OX0.SHhacy2ivX-BEgjelGLHwBnZ9D5nfJMSY0TgGBg2Vl0"}]}]
+
+               
+      //function set_data(sample) {
+        // ['action(전)', 'action(후)', 이 루트로 가는 총합] 
+        /**
+         * JSON의 구조 (아래와 같이 생각하였으나 간편 구현을 위해 value를 key로 두지 않기로 함)
+         * {
+         *    "APPEND_1" : [
+         *                      {"APPEND_2" : 1 },
+         *                      {"CLICK" : 3},
+         *                          ....
+         *                  ],
+         *    "CLICK" : [       
+         *                      {"APPEND_1" : 2}
+         *                  ]
+         * }
+        */
+        //var log = res["data"]
+        // var data_for_chart = new Object();
+        // var append_array = new Array();
+        // var click_array = new Array();
+        // var category_array = new Array();
+
+        // for (var idx in sample){
+        //     actLog = sample[idx];
+        //     if (actLog.length <= 1){
+        //         console.log('pass');
+        //     }
+        //     else{
+        //         actLog.reverse();
+        //         for (var idx_a = 0; i < actLog.length-1; idx_a++){
+        //             elem = new Object();
+        //             if (actLog[idx_a]["action"] == "APPEND"){
+        //                 if (actLog[idx_a+1]["action"] == "APPEND"){
+        //                     if ("APPEND" in Object.keys(append_array)){
+        //                         append_array["APPEND"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.APPEND = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //                 else if (actLog[idx_a+1]["action"] == "CLICK"){
+        //                     if ("CLICK" in Object.keys(append_array)){
+        //                         append_array["CLICK"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.CLICK = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //                 else if (actLog[idx_a+1]["action"] == "CATEGORY"){
+        //                     if ("CATEGORY" in Object.keys(append_array)){
+        //                         append_array["CATEGORY"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.CATEGORY = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //             }
+        //             else if (actLog[idx_a]["action"] == "CLICK"){
+        //                 if (actLog[idx_a+1]["action"] == "APPEND"){
+        //                     if ("APPEND" in Object.keys(append_array)){
+        //                         append_array["APPEND"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.APPEND = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //                 else if (actLog[idx_a+1]["action"] == "CLICK"){
+        //                     if ("CLICK" in Object.keys(append_array)){
+        //                         append_array["CLICK"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.CLICK = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //                 else if (actLog[idx_a+1]["action"] == "CATEGORY"){
+        //                     if ("CATEGORY" in Object.keys(append_array)){
+        //                         append_array["CATEGORY"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.CATEGORY = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //             }
+        //             else if (actLog[idx_a]["action"] == "CATEGORY"){
+        //                 if (actLog[idx_a+1]["action"] == "APPEND"){
+        //                     if ("APPEND" in Object.keys(append_array)){
+        //                         append_array["APPEND"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.APPEND = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //                 else if (actLog[idx_a+1]["action"] == "CLICK"){
+        //                     if ("CLICK" in Object.keys(append_array)){
+        //                         append_array["CLICK"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.CLICK = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //                 else if (actLog[idx_a+1]["action"] == "CATEGORY"){
+        //                     if ("CATEGORY" in Object.keys(append_array)){
+        //                         append_array["CATEGORY"] += 1;
+        //                     }
+        //                     else{
+        //                         elem.CATEGORY = 1
+        //                         append_array.push(elem)
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // data_for_chart.APPEND_1 = append_array; 
+        // data_for_chart.CLICK = click_array;
+        // data_for_chart.CATEGORY = category_array;
+        // }
+
+    //   var urlString = "http://localhost:8080/activity";
+    //   urlParams = parseURL(urlString);
+      
+      
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+
+        var toAdd = new Array();
+        toAdd.push(["FROM_APPEND", "TO_APPEND", 0])
+        toAdd.push(["FROM_APPEND", "TO_CLICK", 0])
+        toAdd.push(["FROM_APPEND", "TO_CATEGORY", 0])
+        toAdd.push(["FROM_CLICK", "TO_APPEND", 0])
+        toAdd.push(["FROM_CLICK", "TO_CLICK", 0])
+        toAdd.push(["FROM_CLICK", "TO_CATEGORY", 0])
+        toAdd.push(["FROM_CATEGORY", "TO_APPEND", 0])
+        toAdd.push(["FROM_CATEGORY", "TO_CLICK", 0])
+        toAdd.push(["FROM_CATEGORY", "TO_CATEGORY", 0])
+
+        for (var idx in sample){
+            actLog = sample[idx]["activityLogs"];
+            console.log(actLog)
+            if (Object.keys(actLog).length <= 1){
+                console.log('pass');
+            }
+            else{
+                actLog.reverse;
+                for (var idx_a = 0; idx_a < Object.keys(actLog).length-1; idx_a++){
+                    if (actLog[idx_a]["action"] == "APPEND"){
+                        if (actLog[idx_a+1]["action"] == "APPEND"){
+                            var changed = toAdd[0][2] + 1
+                            toAdd[0].splice(2, 1, changed)
+                        }
+                        else if (actLog[idx_a+1]["action"] == "CLICK"){
+                            var changed = toAdd[1][2] + 1
+                            toAdd[1].splice(2, 1, changed)
+                        }
+                        else if (actLog[idx_a+1]["action"] == "CATEGORY"){
+                            var changed = toAdd[2][2] + 1
+                            toAdd[2].splice(2, 1, changed)
+                        }
+                    }
+                    else if (actLog[idx_a]["action"] == "CLICK"){
+                        if (actLog[idx_a+1]["action"] == "APPEND"){
+                            var changed = toAdd[3][2] + 1
+                            toAdd[3].splice(2, 1, changed)
+                        }
+                        else if (actLog[idx_a+1]["action"] == "CLICK"){
+                            var changed = toAdd[4][2] + 1
+                            toAdd[4].splice(2, 1, changed)
+                        }
+                        else if (actLog[idx_a+1]["action"] == "CATEGORY"){
+                            var changed = toAdd[5][2] + 1
+                            toAdd[5].splice(2, 1, changed)
+                        }
+                    }
+                    else if (actLog[idx_a]["action"] == "CATEGORY"){
+                        if (actLog[idx_a+1]["action"] == "APPEND"){
+                            var changed = toAdd[6][2] + 1
+                            toAdd[6].splice(2, 1, changed)
+                        }
+                        else if (actLog[idx_a+1]["action"] == "CLICK"){
+                            var changed = toAdd[7][2] + 1
+                            toAdd[7].splice(2, 1, changed)
+                        }
+                        else if (actLog[idx_a+1]["action"] == "CATEGORY"){
+                            var changed = toAdd[8][2] + 1
+                            toAdd[8].splice(2, 1, changed)
+                        }
+                    }
+                }
+            }
+        }
+        
+        data.addRows(toAdd);
+
+        // Sets chart options.
+        var options = {
+          width: 600,
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+
+      //set_data(sample).drawChart(data_for_chart)
+    </script>
+  </head>
+  <body>
+    <div id="sankey_basic" style="width: 900px; height: 300px;"></div>
+  </body>
+</html>
